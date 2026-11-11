@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Photographicode · QR menu & table ordering for Kerala restaurants</title>
+<meta name="description" content="Guests scan the QR on the table, see your menu with photos, order and pay by UPI. No app, no commission. Free setup for restaurants in Kochi and across Kerala.">
+<meta property="og:title" content="Photographicode · QR menu & table ordering for restaurants">
+<meta property="og:description" content="Scan. Order. Pay. Your menu, your colours, zero commission. First month free.">
+<meta name="theme-color" content="#1f6f4a">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<style>
+  :root { --bg: #f5f1e8; --surface: #fffdf8; --text: #16211b; --muted: #5c665f; --brand: #1f6f4a; --accent: #e08a1e; --ink: #0f2a1d; --radius: 14px; --font: 'Inter', system-ui, sans-serif; }
+  .wrap { width: min(1120px, 92vw); margin: 0 auto; }
+  .serif { font-family: 'Fraunces', Georgia, serif; letter-spacing: -.02em; }
+  nav.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  nav.top .wrap { display: flex; align-items: center; gap: 22px; height: 64px; }
+  .brandmark { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 20px; color: var(--text); text-decoration: none; }
+  .brandmark i { width: 32px; height: 32px; border-radius: 9px; background: var(--brand); display: grid; place-items: center; color: #fff; font-style: normal; font-family: 'Noto Sans Malayalam'; }
+  nav.top a.l { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 15px; }
+  nav.top a.l:hover { color: var(--text); }
+  nav.top .sp { flex: 1; }
+  @media (max-width: 760px) { nav.top a.l { display: none; } }
+
+  .hero { padding: 64px 0 40px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  .eyebrow { display: inline-flex; gap: 8px; align-items: center; font-size: 13px; font-weight: 600; color: var(--brand); background: #1f6f4a14; padding: 6px 12px; border-radius: 99px; }
+  .hero h1 { font-size: clamp(38px, 5.6vw, 66px); line-height: 1.02; margin: 18px 0 16px; }
+  .hero h1 em { font-style: normal; color: var(--brand); }
+  .hero .ml { font-family: 'Noto Sans Malayalam'; color: var(--muted); font-size: 17px; margin-bottom: 14px; }
+  .hero p.lead { font-size: 19px; color: var(--muted); max-width: 34em; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin: 26px 0 14px; }
+  .cta .btn { min-height: 50px; padding: 0 22px; font-size: 16px; border-radius: 12px; }
+  .proof { display: flex; gap: 18px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
+  .proof span::before { content: '✓ '; color: var(--brand); font-weight: 700; }
+  .device { justify-self: center; width: 330px; height: 660px; border-radius: 44px; border: 11px solid #121212; background: #121212; overflow: hidden; box-shadow: 0 40px 80px -20px #0f2a1d55; position: relative; }
+  .device iframe { width: 100%; height: 100%; border: 0; background: #fff; }
+  .device .tag { position: absolute; }
+  @media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding-top: 36px; } .device { width: 300px; height: 600px; } }
+
+  section.band { padding: 72px 0; }
+  section.band h2 { font-size: clamp(30px, 3.6vw, 44px); max-width: 18em; }
+  .sub { color: var(--muted); font-size: 18px; max-width: 40em; margin-bottom: 34px; }
+  .pain { background: var(--ink); color: #e8efe9; }
+  .pain .sub { color: #a9bdb0; }
+  .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: #ffffff1a; border-radius: 16px; overflow: hidden; }
+  .pain-grid div { background: var(--ink); padding: 24px; }
+  .pain-grid strong { display: block; font-size: 18px; margin-bottom: 6px; color: #fff; }
+  .pain-grid span { color: #a9bdb0; font-size: 15px; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: s; }
+  .steps div { counter-increment: s; }
+  .steps div::before { content: counter(s, decimal-leading-zero); font-family: 'Fraunces', serif; font-size: 40px; font-weight: 800; color: var(--accent); display: block; margin-bottom: 4px; }
+  .steps strong { display: block; font-size: 18px; margin-bottom: 4px; }
+  .steps span { color: var(--muted); }
+  @media (max-width: 800px) { .steps { grid-template-columns: 1fr 1fr; } }
+  .feat { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .feat div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+  .feat b { font-size: 26px; display: block; margin-bottom: 8px; }
+  .feat strong { display: block; font-size: 17px; margin-bottom: 4px; }
+  .feat span { color: var(--muted); font-size: 15px; }
+  .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .modes > div { background: var(--surface); border-radius: var(--radius); padding: 26px; border: 1px solid var(--line); }
+  .modes h3 { font-size: 22px; }
+  .modes ol { margin: 0; padding-left: 20px; color: var(--muted); display: grid; gap: 6px; }
+  @media (max-width: 760px) { .modes { grid-template-columns: 1fr; } }
+  .roi { background: #fff3df; border: 1px solid #f1d39d; border-radius: 20px; padding: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
+  .roi .big { font-family: 'Fraunces', serif; font-size: 54px; font-weight: 800; color: var(--brand); line-height: 1; }
+  @media (max-width: 760px) { .roi { grid-template-columns: 1fr; } }
+  .prices { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; align-items: stretch; }
+  .price { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+  .price.hot { border: 2px solid var(--brand); box-shadow: 0 30px 60px -30px #1f6f4a66; position: relative; }
+  .price.hot::before { content: 'Most restaurants pick this'; position: absolute; top: -13px; left: 24px; background: var(--brand); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 99px; }
+  .price .amt { font-family: 'Fraunces', serif; font-size: 46px; font-weight: 800; line-height: 1; }
+  .price .amt small { font-family: var(--font); font-size: 16px; color: var(--muted); font-weight: 500; }
+  .price ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; flex: 1; }
+  .price li::before { content: '✓'; color: var(--brand); font-weight: 800; margin-right: 8px; }
+  .guarantee { text-align: center; margin-top: 22px; color: var(--muted); }
+  details { border-bottom: 1px solid var(--line); padding: 16px 0; }
+  summary { cursor: pointer; font-weight: 600; font-size: 17px; }
+  details p { color: var(--muted); margin: 10px 0 0; }
+  .contact { background: var(--ink); color: #fff; border-radius: 24px; padding: clamp(24px, 5vw, 48px); display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .contact .sub { color: #a9bdb0; }
+  .contact form { display: grid; gap: 10px; }
+  .contact label { color: #cfe0d5; }
+  @media (max-width: 800px) { .contact { grid-template-columns: 1fr; } }
+  .cmp th, .cmp td { text-align: left; padding: 10px; border-bottom: 1px solid var(--line); }
+  .cmp th:nth-child(2), .cmp td:nth-child(2) { background: #1f6f4a10; }
+  footer.site { padding: 36px 0 60px; color: var(--muted); font-size: 14px; }
+  footer.site .wrap { display: flex; gap: 20px; flex-wrap: wrap; }
+  footer.site a { color: var(--muted); }
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a class="brandmark" href="/"><i>P</i> Photographicode</a>
+  <a class="l" href="/kochi">Discover Kochi</a><a class="l" href="#found">Get found</a><a class="l" href="#how">How it works</a><a class="l" href="#pricing">Pricing</a><a class="l" href="#faq">FAQ</a>
+  <span class="sp"></span>
+  
+  <a class="btn sm primary" href="#contact">Get free setup</a>
+</div></nav>
+
+<header class="wrap hero">
+  <div>
+    <span class="eyebrow">🌴 Made in Kochi, for the cafés Kochi hasn't found yet</span>
+    <h1 class="serif">Great food deserves<br><em>full tables.</em></h1>
+    <p class="ml">നല്ല ഭക്ഷണം ഉണ്ട്. ഇനി ആളുകൾ കണ്ടെത്തട്ടെ.</p>
+    <p class="lead">1,400+ cafés and restaurants in Kochi have no website. We give yours a page people can find on Google, a QR menu with photos, and a free 30-second video for Instagram. When you're ready, guests can order and pay by UPI from the table. You keep every rupee.</p>
+    <div class="cta">
+      <a class="btn primary" href="#contact">Get my free page →</a>
+      <a class="btn" href="/assets/demo-menu.png" target="_blank" rel="noopener">See a sample menu</a>
+    </div>
+    <div class="proof"><span>Free page, forever</span><span>Free promo video</span><span>We do the setup</span><span>0% commission</span></div>
+  </div>
+  <div class="device" aria-label="Live demo of a guest menu"><img src="/assets/demo-menu.png" alt="Sample QR menu: Kayal Kitchen, with dishes, prices and categories" style="width:100%;height:100%;object-fit:cover;object-position:top"></div>
+</header>
+
+<section class="band" id="found"><div class="wrap">
+  <h2 class="serif">Step one is getting found. We do that for free.</h2>
+  <p class="sub">You cook. We make sure people nearby know you exist. No contract, no card, no catch: if it doesn't bring you guests, you've lost nothing.</p>
+  <div class="feat">
+    <div><b>🔎</b><strong>Your own page on Google</strong><span>Menu, photos, timings, map and a WhatsApp button, at a link you can share. Listed in our Discover Kochi guide too.</span></div>
+    <div><b>🎬</b><strong>A free promo video</strong><span>A 30-second reel of your best dish, shot and edited by a broadcast video editor. Yours to post on Instagram and WhatsApp.</span></div>
+    <div><b>📱</b><strong>QR menu on every table</strong><span>Guests see dishes with photos in your colours. Change prices or mark sold-out from your phone in seconds.</span></div>
+    <div><b>📍</b><strong>We fix your Google Maps listing</strong><span>Hours, phone, photos and menu link, so people searching "cafe near me" actually see you.</span></div>
+  </div>
+  <div class="roi" style="margin-top:28px">
+    <div><div class="big">First 25 cafés</div><p class="muted" style="margin:6px 0 0">Founding offer: <strong>first month free, then ₹299/month for life</strong> for table ordering (normally ₹499). The free page and video stay free either way.</p></div>
+    <a class="btn primary" href="#contact">Claim a founding spot</a>
+  </div>
+</div></section>
+
+<section class="band pain"><div class="wrap">
+  <h2 class="serif">Busy Sunday lunch. Every table waving for a waiter.</h2>
+  <p class="sub">Most order mistakes, slow table turns and unpaid bills start at the moment someone writes an order on a notepad.</p>
+  <div class="pain-grid">
+    <div><strong>Guests wait to order</strong><span>10 minutes before anyone takes the order, and again for the bill. Hungry guests leave bad reviews.</span></div>
+    <div><strong>Orders get mixed up</strong><span>"No onion" gets lost, table 4 gets table 6's biryani. Food is wasted and remade.</span></div>
+    <div><strong>Printed menus cost money</strong><span>Every price change means reprinting. Sold-out dishes still get ordered.</span></div>
+    <div><strong>Staff are hard to find</strong><span>With fewer waiters, the same team can serve more tables when guests order for themselves.</span></div>
+  </div>
+</div></section>
+
+<section class="band" id="how"><div class="wrap">
+  <h2 class="serif">How it works</h2>
+  <p class="sub">Nothing to install. Works on every phone camera, Android and iPhone.</p>
+  <div class="steps">
+    <div><strong>Guest scans</strong><span>The QR on each table already knows the table number.</span></div>
+    <div><strong>Browses & orders</strong><span>Categories, photos, veg/non-veg, bestsellers. Add quantity, add "less spicy", send.</span></div>
+    <div><strong>Kitchen sees it instantly</strong><span>Your dashboard rings. Accept, mark ready, served. The guest sees each step live.</span></div>
+    <div><strong>Pays your way</strong><span>Pay first or after the meal. UPI to your own account, online, or cash at the counter.</span></div>
+  </div>
+</div></section>
+
+<section class="band" style="padding-top:0"><div class="wrap">
+  <div class="modes">
+    <div><h3 class="serif">🍛 Eat first, pay later</h3><p class="muted">For dine-in restaurants. Guests can keep ordering.</p>
+      <ol><li>Order starters, then mains, then dessert. Everything goes on one table bill.</li><li>Tap "Pay bill", or "Ask for bill" to call the waiter.</li><li>Pay by UPI or at the counter. The table clears automatically.</li></ol></div>
+    <div><h3 class="serif">☕ Pay first, then we cook</h3><p class="muted">For cafés, juice shops, food courts, quick service.</p>
+      <ol><li>Guest places an order and pays right away by UPI or online.</li><li>Only paid orders reach the kitchen.</li><li>No bill chasing, no walk-outs.</li></ol></div>
+  </div>
+</div></section>
+
+<section class="band" id="features" style="padding-top:0"><div class="wrap">
+  <h2 class="serif">Everything a restaurant needs. Nothing it doesn't.</h2>
+  <p class="sub">Owners change the menu from their phone in seconds. No calling a developer.</p>
+  <div class="feat">
+    <div><b>🎨</b><strong>Your brand, not ours</strong><span>Your logo, cover photo, colours and fonts. Six ready styles from Banana Leaf to Fine Dine Gold.</span></div>
+    <div><b>🍤</b><strong>Menu editor anyone can use</strong><span>Add dishes with photos, drag to reorder, move between categories, mark sold out with one tap.</span></div>
+    <div><b>🛎️</b><strong>Live orders & kitchen screen</strong><span>Orders arrive with a sound. Use the kitchen view on a tablet and table view for the cashier.</span></div>
+    <div><b>🙋</b><strong>Call waiter, water, bill</strong><span>Guests tap a button instead of waving. Staff see which table needs what.</span></div>
+    <div><b>📱</b><strong>UPI straight to your bank</strong><span>GPay, PhonePe, Paytm with the amount pre-filled. Or Razorpay for auto-confirmed online payments.</span></div>
+    <div><b>🌐</b><strong>Free restaurant website</strong><span>A fast page with your story, timings, map, menu and WhatsApp button. Link it from Google Maps.</span></div>
+    <div><b>📈</b><strong>Sales reports</strong><span>Daily sales, best-selling dishes, busy hours, UPI vs cash. Know what to cook more of.</span></div>
+    <div><b>⭐</b><strong>More Google reviews</strong><span>After paying, happy guests are asked to rate you on Google with one tap.</span></div>
+    <div><b>📝</b><strong>Waiter tablet ordering</strong><span>Waiters take orders on a tablet or phone for guests who'd rather talk. Same bill, same kitchen screen.</span></div>
+    <div><b>👨‍🍳</b><strong>Kitchen display</strong><span>Chef screen with the oldest order first. Late orders turn red. Big buttons for wet hands.</span></div>
+    <div><b>🧾</b><strong>PDF bill with GSTIN</strong><span>Guests download a proper tax invoice, with your registered name, GSTIN and FSSAI.</span></div>
+    <div><b>👥</b><strong>Staff logins</strong><span>Waiters and kitchen get their own login, without access to prices or settings.</span></div>
+  </div>
+</div></section>
+
+<section class="band" style="padding-top:0"><div class="wrap roi">
+  <div><div class="big">₹499</div><p class="muted" style="margin:6px 0 0">a month. That is about <strong>₹17 a day</strong>, less than one cup of tea per table.</p></div>
+  <div><h3 class="serif" style="font-size:26px">It pays for itself with 2 extra plates a month.</h3>
+    <p class="muted" style="margin:0">Delivery apps take 18–30% of every order. Photographicode takes <strong>nothing</strong> from your orders, just one flat fee. When guests can re-order from the table, they add that extra dessert or juice.</p></div>
+</div></section>
+
+<section class="band" id="switch" style="padding-top:0"><div class="wrap">
+  <span class="eyebrow">🔁 Already using Petpooja, DotPe, Thrive or another QR app?</span>
+  <h2 class="serif" style="margin-top:12px">Switch in one day. Pay nothing until your old plan ends.</h2>
+  <p class="sub">Most restaurants stay with a tool they don't love because moving feels hard. We do the moving for you.</p>
+  <div class="feat">
+    <div><b>🧾</b><strong>Contract buyout</strong><span>Locked into an annual plan elsewhere? Show us the invoice. We give you free months until it ends (up to 6 months).</span></div>
+    <div><b>⚡</b><strong>Menu import in 2 minutes</strong><span>Export your menu from Petpooja or any POS (or Excel). Paste it in. Categories and prices come across automatically.</span></div>
+    <div><b>📲</b><strong>Use the tablets you already have</strong><span>Waiter tablets, kitchen screens, old phones: if it has a browser, it works. No new hardware to buy.</span></div>
+    <div><b>🙅</b><strong>No commission, ever</strong><span>Not 3% per order and no "payment add-on". One flat monthly fee, published on this page.</span></div>
+    <div><b>🔓</b><strong>Your data is yours</strong><span>Download your menu and every order as Excel any time. No exit fee. We keep you by being good, not by locking you in.</span></div>
+    <div><b>🧑‍🔧</b><strong>Local, same-day support</strong><span>Kochi team, Malayalam & English, WhatsApp reply within an hour in business hours, visit within a day.</span></div>
+  </div>
+  <div class="roi" style="margin-top:22px">
+    <div><h3 class="serif" style="font-size:24px;margin-top:0">How much are you paying now?</h3>
+      <div style="display:grid;gap:10px;grid-template-columns:1fr 1fr">
+        <label>Current software fee / month (₹)<input type="number" id="cFee" value="900" min="0"></label>
+        <label>Commission per order (%)<input type="number" id="cPct" value="3" min="0" step="0.5"></label>
+        <label>QR / online orders per month (₹ value)<input type="number" id="cGmv" value="150000" min="0" step="1000"></label>
+        <label>Extra add-ons / month (₹)<input type="number" id="cAdd" value="0" min="0"></label>
+      </div></div>
+    <div><p class="muted" style="margin:0">With Photographicode Table Ordering (₹499) you save</p><div class="big" id="cSave">₹0</div><p class="muted" id="cYear" style="margin:6px 0 0"></p></div>
+  </div>
+  <div style="margin-top:22px;overflow-x:auto;background:var(--surface);border-radius:16px;padding:6px 10px">
+    <table class="cmp" style="width:100%;border-collapse:collapse;font-size:15px">
+      <thead><tr><th></th><th>Photographicode</th><th>Typical POS suite</th><th>Commission apps</th></tr></thead>
+      <tbody>
+        <tr><td>Price</td><td><b>₹499/month, published</b></td><td>About ₹7.5k–₹15k/yr + add-ons, quote-based</td><td>~3% per order + subscription</td></tr>
+        <tr><td>Contract</td><td><b>Monthly, cancel any time</b></td><td>Usually annual, paid upfront</td><td>Varies</td></tr>
+        <tr><td>QR ordering + kitchen screen</td><td><b>Included</b></td><td>Often paid add-ons</td><td>Included</td></tr>
+        <tr><td>Waiter tablet ordering</td><td><b>Included</b></td><td>Captain app, often extra</td><td>Rare</td></tr>
+        <tr><td>Money to your own UPI</td><td><b>Yes, ₹0 fee</b></td><td>Often via their gateway</td><td>Via their gateway</td></tr>
+        <tr><td>Setup</td><td><b>We type your menu, live in 24 h</b></td><td>Days to weeks</td><td>Self-serve</td></tr>
+        <tr><td>Paper menu that matches</td><td><b>One-click print</b></td><td>No</td><td>No</td></tr>
+        <tr><td>Malayalam support, local visits</td><td><b>Yes</b></td><td>Call centre</td><td>Chat</td></tr>
+      </tbody></table>
+    <p class="muted" style="font-size:12px;margin:8px 4px">Competitor figures are typical published or reported ranges (Nov 2026) and vary by plan. Ask us for a side-by-side using your own invoice.</p>
+  </div>
+</div></section>
+
+<section class="band" id="pricing" style="padding-top:0"><div class="wrap">
+  <h2 class="serif">Simple pricing. First month free.</h2>
+  <p class="sub">No setup fee, no commission, no contract. If it doesn't help your restaurant, stop any time.</p>
+  <div class="prices">
+    <div class="price"><div><strong>Menu</strong><p class="muted small" style="margin:0">Digital menu & website only</p></div>
+      <div class="amt">₹249<small> /month</small></div>
+      <ul><li>QR menu with photos & your theme</li><li>Unlimited dishes & updates</li><li>Restaurant website for Google</li><li>Sold-out & price changes instantly</li></ul>
+      <a class="btn" href="#contact">Start free month</a></div>
+    <div class="price hot"><div><strong>Table Ordering</strong><p class="muted small" style="margin:0">Everything guests and kitchen need</p></div>
+      <div class="amt">₹499<small> /month</small></div>
+      <ul><li>Everything in Menu</li><li>Order from table, live kitchen screen</li><li>UPI & cash payments, pay first or later</li><li>Call waiter / bill requests</li><li>Sales reports & staff logins</li><li><strong>Free menu setup by our team</strong></li></ul>
+      <a class="btn primary" href="#contact">Start free month</a>
+      <span class="muted small" style="text-align:center">or ₹4,999/year: 2 months free</span></div>
+    <div class="price"><div><strong>Pro</strong><p class="muted small" style="margin:0">Bigger restaurants & chains</p></div>
+      <div class="amt">₹999<small> /month</small></div>
+      <ul><li>Everything in Table Ordering</li><li>Razorpay auto-confirmed payments</li><li>Your own domain name</li><li>Food photo session for 20 dishes</li><li>Priority WhatsApp support</li></ul>
+      <a class="btn" href="#contact">Talk to us</a></div>
+  </div>
+  <p class="guarantee">Printed table QR stands at cost (about ₹60 each). Prices exclude 18% GST.</p>
+</div></section>
+
+<section class="band" id="faq" style="padding-top:0"><div class="wrap" style="max-width:780px">
+  <h2 class="serif">Questions owners ask</h2>
+  <details><summary>Do guests need to download an app?</summary><p>No. They point the phone camera at the QR and the menu opens in the browser in about a second.</p></details>
+  <details><summary>What about older guests who don't want to use the phone?</summary><p>Waiters can still take orders the normal way. QR ordering is an extra lane, not a replacement. Many restaurants keep one printed menu per table.</p></details>
+  <details><summary>Where does the payment money go?</summary><p>Straight to your own UPI ID or your own Razorpay account. Photographicode never holds your money and takes no commission.</p></details>
+  <details><summary>Can guests order from home using the QR?</summary><p>Each table's QR has a secret code, and staff see every order before cooking. You can also pause phone ordering any time with one switch.</p></details>
+  <details><summary>Can I write the menu in Malayalam?</summary><p>Yes. Dish names and descriptions can be in Malayalam, English, or both.</p></details>
+  <details><summary>How long does setup take?</summary><p>Send us a photo of your current menu on WhatsApp. We type it in, add your logo and colours, and deliver QR cards. Usually live in 1–2 days.</p></details>
+  <details><summary>What if the internet goes down?</summary><p>Guests use their own mobile data, so the menu keeps working. Your staff can always take orders by hand as usual.</p></details>
+</div></section>
+
+<section class="band" id="contact" style="padding-top:0"><div class="wrap contact">
+  <div><h2 class="serif" style="color:#fff">Get your restaurant live this week.</h2>
+    <p class="sub">Leave your number. We'll visit or call, show you the demo on your own menu, and set everything up free.</p>
+    <p><a class="btn accent" id="waBtn" href="#" target="_blank" rel="noopener" hidden>💬 Chat on WhatsApp</a></p></div>
+  <form id="leadForm">
+    <label>Your name<input name="name" required maxlength="80"></label>
+    <label>Restaurant / hotel name<input name="hotel" maxlength="120"></label>
+    <label>Phone / WhatsApp<input name="phone" type="tel" required maxlength="30"></label>
+    <label>What do you use today?<select name="using"><option value="">Paper / nothing yet</option><option>Petpooja</option><option>DotPe</option><option>Thrive</option><option>Posist / Restroworks</option><option>Other POS / QR app</option></select></label>
+    <label>City / area<input name="city" maxlength="60" placeholder="Kakkanad, Edappally, Fort Kochi…"></label>
+    <label>Anything we should know?<textarea name="message" maxlength="1000" placeholder="Number of tables, current billing system…"></textarea></label>
+    <button class="btn accent block" style="min-height:50px">Send on WhatsApp</button>
+  </form>
+</div></section>
+
+<footer class="site"><div class="wrap"><span>© <span id="yr"></span> Photographicode · Kochi, Kerala</span><a href="#pricing">Pricing</a></div></footer>
+
+<script type="module">
+  import { api, toast, safely } from '/assets/ui.js';
+  const WHATSAPP = '918075411602'; // your business WhatsApp number with country code, e.g. '919800000000'
+  if (WHATSAPP) { const b = document.getElementById('waBtn'); b.hidden = false; b.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hi, I want to know about Photographicode QR menu for my restaurant')}`; }
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const calc = () => {
+    const v = id => Math.max(0, +document.getElementById(id).value || 0);
+    const now = v('cFee') + v('cAdd') + v('cGmv') * v('cPct') / 100;
+    const save = Math.max(0, Math.round(now - 499));
+    document.getElementById('cSave').textContent = `₹${save.toLocaleString('en-IN')}/month`;
+    document.getElementById('cYear').textContent = `That's ₹${(save * 12).toLocaleString('en-IN')} a year back in your pocket.`;
+  };
+  ['cFee', 'cPct', 'cGmv', 'cAdd'].forEach(id => document.getElementById(id).oninput = calc); calc();
+  document.getElementById('leadForm').onsubmit = safely(async e => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(e.target));
+    const text = ['Hi, I want a free page for my restaurant.', 'Name: ' + d.name, 'Restaurant: ' + (d.hotel || '-'), 'Phone: ' + d.phone,
+      'Uses today: ' + (d.using || 'Paper / nothing'), 'Area: ' + (d.city || '-'), d.message ? 'Note: ' + d.message : ''].filter(Boolean).join('\n');
+    window.open('https://wa.me/918075411602?text=' + encodeURIComponent(text), '_blank', 'noopener');
+    e.target.innerHTML = '<h3 style="color:#fff">Thank you! 🙏</h3><p style="color:#cfe0d5">WhatsApp opened with your details. Press send and we will call you within one working day.</p>';
+    toast('Request sent');
+  });
+</script>
+<script>{ const h = new URLSearchParams(location.search).get('hotel'); const f = document.querySelector('#leadForm [name=hotel]'); if (h && f) f.value = h.slice(0, 120); }</script>
+</body>
+</html>

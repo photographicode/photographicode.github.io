@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Discover Kochi · 1,400+ cafés and restaurants, including the ones nobody told you about</title>
+<meta name="description" content="Find small cafés, tea shops and family restaurants across Kochi: Fort Kochi, Kakkanad, Edappally, Thrippunithura, Chottanikkara and more. Free listing for every local place.">
+<meta name="theme-color" content="#1f6f4a">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<style>
+  :root { --bg: #f5f1e8; --surface: #fffdf8; --text: #16211b; --muted: #5c665f; --brand: #1f6f4a; --accent: #e08a1e; --ink: #0f2a1d; --radius: 14px; --font: 'Inter', system-ui, sans-serif; }
+  .wrap { width: min(1120px, 92vw); margin: 0 auto; }
+  .serif { font-family: 'Fraunces', Georgia, serif; letter-spacing: -.02em; }
+  nav.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  nav.top .wrap { display: flex; align-items: center; gap: 16px; height: 60px; }
+  .brandmark { font-weight: 800; font-size: 19px; color: var(--text); text-decoration: none; }
+  .sp { flex: 1; }
+  header { padding: 44px 0 18px; }
+  header h1 { font-size: clamp(32px, 5vw, 54px); line-height: 1.04; margin-bottom: 10px; }
+  header h1 em { font-style: normal; color: var(--brand); }
+  header p { color: var(--muted); font-size: 18px; max-width: 40em; }
+  .tools { position: sticky; top: 60px; z-index: 5; background: var(--bg); padding: 12px 0; display: grid; gap: 10px; }
+  .search { width: 100%; min-height: 50px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); padding: 0 16px; font-size: 17px; }
+  .chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
+  .chip { flex: none; min-height: 36px; padding: 0 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-weight: 600; font-size: 14px; }
+  .chip[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .count { color: var(--muted); font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; padding: 8px 0 40px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+  .card h3 { font-size: 17px; margin: 0; }
+  .meta { color: var(--muted); font-size: 14px; }
+  .tag { align-self: flex-start; font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 99px; background: #1f6f4a14; color: var(--brand); }
+  .acts { display: flex; gap: 14px; margin-top: auto; padding-top: 8px; }
+  .acts a { font-size: 14px; font-weight: 600; text-decoration: none; }
+  .claim { color: #a35f08; }
+  .more { display: block; margin: 0 auto 40px; }
+  .owner { background: var(--ink); color: #e8efe9; border-radius: 20px; padding: 28px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; margin: 10px 0 24px; }
+  .owner h2 { color: #fff; font-size: clamp(22px, 3vw, 30px); margin: 0 0 6px; }
+  .owner p { color: #a9bdb0; margin: 0; }
+  @media (max-width: 700px) { .owner { grid-template-columns: 1fr; } }
+  footer { color: var(--muted); font-size: 13px; padding: 24px 0 40px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a class="brandmark" href="/">Photographicode</a><span class="sp"></span>
+  <a class="btn sm primary" href="/#contact">Own a café? Get a free page</a>
+</div></nav>
+
+<header class="wrap">
+  <h1 class="serif">Discover Kochi.<br><em>Beyond the famous ten.</em></h1>
+  <p>Tea shops, family hotels and tiny cafés that never made it onto a food blog. Search by area or dish and go try somewhere new this week.</p>
+</header>
+
+<main class="wrap">
+  <section class="owner" aria-label="For owners">
+    <div><h2 class="serif">Is your place on this list?</h2>
+      <p>Claim it free. We'll add your menu, photos, timings and a WhatsApp button, shoot a 30-second video of your best dish, and help you show up on Google Maps.</p></div>
+    <a class="btn accent" href="/#contact" style="min-height:50px">Claim my free page</a>
+  </section>
+
+  <div class="tools">
+    <label class="sr" for="q">Search places</label>
+    <input class="search" id="q" type="search" placeholder="Search a name, dish or area… e.g. biryani, Fort Kochi" autocomplete="off">
+    <div class="chips" id="areas" role="group" aria-label="Filter by area"></div>
+    <div class="chips" id="types" role="group" aria-label="Filter by type"></div>
+    <div class="count" id="count" aria-live="polite">Loading places…</div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <button class="btn more" id="more" hidden>Show more places</button>
+</main>
+
+<footer class="wrap">
+  Place data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL). Listings are unclaimed until the owner contacts us. Something wrong or closed? Tell us and we'll fix it.
+</footer>
+
+<script>
+const PAGE = 60;
+const TYPES = { restaurant: 'Restaurant', cafe: 'Café', fast_food: 'Quick bites', ice_cream: 'Desserts', food_court: 'Food court' };
+let all = [], shown = PAGE, area = '', type = '';
+const $ = id => document.getElementById(id);
+const norm = s => (s || '').toLowerCase();
+
+function chip(label, value, current, set) {
+  const b = document.createElement('button');
+  b.className = 'chip'; b.textContent = label; b.setAttribute('aria-pressed', String(value === current));
+  b.onclick = () => { set(value); shown = PAGE; render(); };
+  return b;
+}
+function renderChips() {
+  const areas = [...new Set(all.map(p => p.area))].sort();
+  $('areas').replaceChildren(chip('All areas', '', area, v => area = v), ...areas.map(a => chip(a, a, area, v => area = v)));
+  $('types').replaceChildren(chip('Everything', '', type, v => type = v), ...Object.entries(TYPES).map(([k, l]) => chip(l, k, type, v => type = v)));
+}
+function card(p) {
+  const el = document.createElement('article'); el.className = 'card';
+  const tag = document.createElement('span'); tag.className = 'tag'; tag.textContent = TYPES[p.type] || p.type;
+  const h = document.createElement('h3'); h.textContent = p.name;
+  const meta = document.createElement('div'); meta.className = 'meta'; meta.textContent = [p.cuisine, p.area].filter(Boolean).join(' · ');
+  const dir = document.createElement('a'); dir.href = `https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lon}`;
+  dir.target = '_blank'; dir.rel = 'noopener'; dir.textContent = 'Directions →';
+  const claim = document.createElement('a'); claim.className = 'claim'; claim.href = `/?hotel=${encodeURIComponent(p.name)}#contact`; claim.textContent = 'Owner? Claim free';
+  const acts = document.createElement('div'); acts.className = 'acts'; acts.append(dir, claim);
+  el.append(tag, h, meta, acts);
+  return el;
+}
+function render() {
+  renderChips();
+  const q = norm($('q').value).trim();
+  const list = all.filter(p => (!area || p.area === area) && (!type || p.type === type) &&
+    (!q || norm(p.name).includes(q) || norm(p.cuisine).includes(q) || norm(p.area).includes(q)));
+  $('count').textContent = `${list.length.toLocaleString('en-IN')} places`;
+  $('grid').replaceChildren(...list.slice(0, shown).map(card));
+  $('more').hidden = list.length <= shown;
+}
+$('q').addEventListener('input', () => { shown = PAGE; render(); });
+$('more').onclick = () => { shown += PAGE; render(); };
+fetch('/assets/kochi-places.json').then(r => r.json()).then(d => { all = d; render(); })
+  .catch(() => { $('count').textContent = 'Could not load places. Please refresh.'; });
+</script>
+</body>
+</html>
