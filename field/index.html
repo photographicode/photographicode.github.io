@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Field app · Photographicode</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#141311">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Noto+Sans+Malayalam:wght@500&display=swap">
+<style>
+  :root { --bg: #f6f3ee; --ink: #141311; --muted: #6b665e; --line: #e4ded4; --card: #fffdf9; --go: #1f6f4a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 Inter, system-ui, sans-serif; }
+  h1 { font: 800 28px/1 'Bricolage Grotesque', sans-serif; letter-spacing: -.02em; margin: 0; }
+  .wrap { width: min(860px, 94vw); margin: 0 auto; padding: 18px 0 80px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 16px 0; }
+  .stats div { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; }
+  .stats b { display: block; font: 800 26px 'Bricolage Grotesque', sans-serif; }
+  .stats span { font-size: 12px; color: var(--muted); }
+  .bar { position: sticky; top: 0; z-index: 2; background: var(--bg); padding: 8px 0; display: grid; gap: 8px; }
+  input, select, button { font: inherit; }
+  input[type=search] { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: #fff; }
+  .chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+  .chips button { flex: none; border: 1px solid var(--line); background: #fff; border-radius: 99px; padding: 6px 12px; cursor: pointer; }
+  .chips button[aria-pressed=true] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .row { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; margin-top: 8px; display: grid; gap: 8px; }
+  .row.st-signed { border-color: var(--go); box-shadow: inset 4px 0 0 var(--go); }
+  .row.st-interested { box-shadow: inset 4px 0 0 #e0a43a; }
+  .row.st-no { opacity: .55; }
+  .top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+  .top strong { font-size: 16px; }
+  .top small { color: var(--muted); white-space: nowrap; }
+  .acts { display: flex; flex-wrap: wrap; gap: 6px; }
+  .acts a, .acts button { border: 1px solid var(--line); background: #fff; color: var(--ink); text-decoration: none; padding: 8px 12px; border-radius: 10px; cursor: pointer; font-size: 14px; }
+  .acts a.main { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .acts a.wa { background: #25d366; border-color: #25d366; color: #0b2915; font-weight: 600; }
+  .acts select { padding: 8px; border-radius: 10px; border: 1px solid var(--line); background: #fff; }
+  .note { width: 100%; padding: 8px 10px; border: 1px dashed var(--line); border-radius: 10px; background: transparent; }
+  .tools { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .tools button { border: 1px solid var(--ink); background: transparent; border-radius: 10px; padding: 8px 12px; cursor: pointer; }
+  #cards { display: none; }
+  @media print {
+    @page { size: A4; margin: 8mm; }
+    body { background: #fff; } .wrap { display: none; }
+    #cards { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+    .card { border: 1px dashed #999; border-radius: 4mm; padding: 6mm; display: grid; grid-template-columns: 34mm 1fr; gap: 5mm; align-items: center; break-inside: avoid; height: 62mm; }
+    .card img { width: 34mm; height: 34mm; }
+    .card h2 { font: 800 15pt/1.05 'Bricolage Grotesque', sans-serif; margin: 0 0 2mm; }
+    .card p { margin: 0; font-size: 9pt; color: #333; }
+    .card .ml { font-family: 'Noto Sans Malayalam', sans-serif; margin-top: 2mm; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Café visits</h1>
+  <div class="stats" id="stats"></div>
+  <div class="bar">
+    <input type="search" id="q" placeholder="Search café or area…" autocomplete="off">
+    <div class="chips" id="areas"></div>
+    <div class="chips" id="sts"></div>
+  </div>
+  <div id="list"></div>
+  <div class="tools">
+    <button id="print">🖨️ Print leave-behind cards (shown list)</button>
+    <button id="export">⬇️ Export visits (CSV)</button>
+  </div>
+  <p style="color:var(--muted);font-size:13px">Visit status and notes are saved on this phone only. Export now and then as a backup.</p>
+</div>
+<div id="cards"></div>
+
+<script type="module">
+const KEY = 'pc:field:v1';
+const STATUSES = { new: 'Not visited', visited: 'Visited', interested: 'Interested', signed: 'Signed ✅', no: 'Not now' };
+const store = JSON.parse(localStorage.getItem(KEY) || '{}'); // slug -> { s, note, at }
+const save = () => localStorage.setItem(KEY, JSON.stringify(store));
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const cafes = await (await fetch('cafes.json')).json();
+const link = c => `${location.origin}/demo/${c.slug}/`;
+const msg = c => `Namaskaram! 🙏 I made a sample QR menu for ${c.name}. Guests scan, order from the table and pay by UPI to you, 0% commission.\n\nSee it here: ${link(c)}\n\nFree Google page and a free 30-sec video too. – Joel, Photographicode`;
+const f = { q: '', area: '', s: '' };
+const st = c => store[c.slug]?.s || 'new';
+const areas = [...new Set(cafes.map(c => c.area))];
+let shown = cafes;
+
+const chip = (el, key, opts) => {
+  el.innerHTML = [['', 'All'], ...opts].map(([v, t]) => `<button data-v="${esc(v)}" aria-pressed="${f[key] === v}">${esc(t)}</button>`).join('');
+  el.onclick = e => { const b = e.target.closest('button'); if (!b) return; f[key] = b.dataset.v; render(); };
+};
+
+function render() {
+  chip(document.getElementById('areas'), 'area', areas.map(a => [a, a]));
+  chip(document.getElementById('sts'), 's', Object.entries(STATUSES));
+  const n = s => cafes.filter(c => st(c) === s).length;
+  document.getElementById('stats').innerHTML = `<div><b>${cafes.length - n('new')}</b><span>visited of ${cafes.length}</span></div><div><b>${n('interested')}</b><span>interested</span></div><div><b>${n('signed')}</b><span>signed · goal 25</span></div><div><b>${n('no')}</b><span>not now</span></div>`;
+  const q = f.q.toLowerCase();
+  shown = cafes.filter(c => (!f.area || c.area === f.area) && (!f.s || st(c) === f.s) && (!q || `${c.name} ${c.area}`.toLowerCase().includes(q)));
+  document.getElementById('list').innerHTML = shown.map(c => {
+    const r = store[c.slug] || {};
+    const wa = `https://wa.me/${c.phone || ''}?text=${encodeURIComponent(msg(c))}`;
+    return `<div class="row st-${st(c)}" data-slug="${esc(c.slug)}">
+      <div class="top"><strong>${esc(c.name)}</strong><small>${esc(c.area)} · ${esc(c.type)}</small></div>
+      <div class="acts">
+        <a class="main" href="${esc(link(c))}" target="_blank" rel="noopener">Show pitch</a>
+        <a class="wa" href="${esc(wa)}" target="_blank" rel="noopener">WhatsApp${c.phone ? '' : ' (pick contact)'}</a>
+        ${c.maps ? `<a href="${esc(c.maps)}" target="_blank" rel="noopener">Map</a>` : ''}
+        <button data-copy>Copy link</button>
+        <select data-st aria-label="Visit status">${Object.entries(STATUSES).map(([v, t]) => `<option value="${v}"${st(c) === v ? ' selected' : ''}>${t}</option>`).join('')}</select>
+      </div>
+      <input class="note" data-note value="${esc(r.note || '')}" placeholder="Note: owner name, phone, Petpooja?, call back when…" aria-label="Note">
+    </div>`;
+  }).join('') || '<p>No cafés match.</p>';
+}
+
+const list = document.getElementById('list');
+const upd = (slug, patch) => { store[slug] = { ...(store[slug] || {}), ...patch, at: new Date().toISOString() }; save(); };
+list.addEventListener('change', e => {
+  const slug = e.target.closest('.row')?.dataset.slug; if (!slug) return;
+  if (e.target.matches('[data-st]')) { upd(slug, { s: e.target.value }); render(); }
+  if (e.target.matches('[data-note]')) upd(slug, { note: e.target.value.slice(0, 500) });
+});
+list.addEventListener('click', async e => {
+  if (!e.target.matches('[data-copy]')) return;
+  const c = cafes.find(x => x.slug === e.target.closest('.row').dataset.slug);
+  await navigator.clipboard.writeText(link(c)).then(() => { e.target.textContent = 'Copied ✓'; }, () => prompt('Copy this link', link(c)));
+});
+document.getElementById('q').oninput = e => { f.q = e.target.value; render(); };
+document.getElementById('print').onclick = () => {
+  document.getElementById('cards').innerHTML = shown.map(c => `<div class="card"><img src="/demo/${esc(c.slug)}/qr.svg" alt="">
+    <div><h2>${esc(c.name)}</h2><p>Your QR menu is ready. Scan to try it: order a dish and see what your guests will see.</p>
+    <p class="ml" lang="ml">നിങ്ങളുടെ മെനു തയ്യാർ. സ്കാൻ ചെയ്യൂ.</p><p style="margin-top:2mm"><b>Photographicode</b> · WhatsApp 80754 11602</p></div></div>`).join('');
+  Promise.all([...document.querySelectorAll('#cards img')].map(i => i.decode().catch(() => {}))).then(() => print());
+};
+document.getElementById('export').onclick = () => {
+  const rows = [['name', 'area', 'status', 'note', 'updated', 'pitch']].concat(cafes.filter(c => store[c.slug]).map(c => [c.name, c.area, st(c), store[c.slug].note || '', store[c.slug].at, link(c)]));
+  const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+  const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob(['﻿' + csv], { type: 'text/csv' })), download: `visits-${new Date().toISOString().slice(0, 10)}.csv` });
+  a.click();
+};
+render();
+</script>
+</body>
+</html>

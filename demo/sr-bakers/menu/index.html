@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6b2f">
+<meta name="hotel" content="sr-bakers">
+<title>SR Bakers · Sample menu</title><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/menu.css">
+</head>
+<body class="guest">
+<header class="hero" id="hero"></header>
+<div class="notice" id="notice" hidden></div>
+<div class="tools">
+  <label class="search"><span class="sr">Search dishes</span><input id="q" type="search" placeholder="Search dishes…" autocomplete="off"></label>
+  <label class="check vegonly"><input type="checkbox" id="vegOnly"> Veg only</label>
+</div>
+<nav class="chips" id="chips" aria-label="Menu sections"></nav>
+<main id="list" aria-live="polite"><p class="loading">Loading menu…</p></main>
+<footer class="foot muted small" id="foot"></footer>
+
+<div class="dock">
+  <button class="tabbtn" id="tabBtn" hidden></button>
+  <button class="cartbar" id="cartBar" hidden></button>
+</div>
+<dialog id="sheet" class="sheet"><div class="dlg" id="sheetBody"></div></dialog>
+<script>window.DEMO={"hotel":{"slug":"sr-bakers","name":"SR Bakers","theme":{"preset":"cloud","layout":"list"},"url":"../","menuUrl":"./","profile":{"tagline":"Good coffee, fresh bakes, easy evenings","cuisine":"Café · Bakes · Shakes","address":"Irumpanam / Seaport Rd, Ernakulam (sample)","hours":"Mon–Sun · 7 am – 10 pm (sample)"},"settings":{"payment_mode":"postpay","tax_pct":5,"upi_id":"","payee":"SR Bakers","razorpay":false,"rp_key_id":"","cash":true,"demo_pay":true,"accepting":true,"ordering":true}},"menu":[{"id":1,"name":"Coffee","visible":1,"sort":0,"items":[{"id":1,"category_id":1,"photo":null,"available":1,"bestseller":1,"spicy":0,"sort":0,"name":"Filter Coffee","description":"South Indian decoction, frothy and strong","price":3000,"veg":1},{"id":2,"category_id":1,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Cappuccino","description":"Double shot, steamed milk","price":11000,"veg":1},{"id":3,"category_id":1,"photo":null,"available":1,"bestseller":1,"spicy":0,"sort":2,"name":"Cold Coffee","description":"Thick, with a scoop of ice cream","price":11000,"veg":1},{"id":4,"category_id":1,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":3,"name":"Iced Americano","description":"Espresso over ice","price":10000,"veg":1}]},{"id":2,"name":"Tea & Coolers","visible":1,"sort":1,"items":[{"id":5,"category_id":2,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":0,"name":"Masala Chai","description":"Ginger, cardamom, slow-boiled","price":2500,"veg":1},{"id":6,"category_id":2,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Sulaimani","description":"Spiced lemon black tea","price":2000,"veg":1},{"id":7,"category_id":2,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":2,"name":"Mint Lime Cooler","description":"Fresh lime, mint, soda","price":6000,"veg":1},{"id":8,"category_id":2,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":3,"name":"Avil Milk","description":"Beaten rice, banana, milk, nuts","price":8000,"veg":1}]},{"id":3,"name":"Shakes","visible":1,"sort":2,"items":[{"id":9,"category_id":3,"photo":null,"available":1,"bestseller":1,"spicy":0,"sort":0,"name":"Oreo Shake","description":"Cookies blended with vanilla","price":13000,"veg":1},{"id":10,"category_id":3,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Mango Shake","description":"Seasonal mango, thick","price":12000,"veg":1},{"id":11,"category_id":3,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":2,"name":"Sharjah Shake","description":"Banana, Horlicks, nuts · Kochi classic","price":10000,"veg":1}]},{"id":4,"name":"Quick Bites","visible":1,"sort":3,"items":[{"id":12,"category_id":4,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":0,"name":"Chicken Puffs","description":"Spicy chicken masala, flaky pastry","price":2500,"veg":0},{"id":13,"category_id":4,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Veg Sandwich","description":"Grilled, with mint chutney","price":7000,"veg":1},{"id":14,"category_id":4,"photo":null,"available":1,"bestseller":1,"spicy":0,"sort":2,"name":"Grilled Chicken Sandwich","description":"Pepper chicken, cheese, toasted","price":12000,"veg":0},{"id":15,"category_id":4,"photo":null,"available":1,"bestseller":0,"spicy":1,"sort":3,"name":"Peri Peri Fries","description":"Crispy fries, peri peri dust","price":9000,"veg":1},{"id":16,"category_id":4,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":4,"name":"Chicken Momos (6)","description":"Steamed, with red chutney","price":12000,"veg":0}]},{"id":5,"name":"Bakes & Desserts","visible":1,"sort":4,"items":[{"id":17,"category_id":5,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":0,"name":"Brownie with Ice Cream","description":"Warm fudge brownie, vanilla scoop","price":12000,"veg":1},{"id":18,"category_id":5,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Plum Cake Slice","description":"Rich fruit cake","price":4000,"veg":1},{"id":19,"category_id":5,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":2,"name":"Tender Coconut Pudding","description":"Light, chilled · ഇളനീർ പുഡ്ഡിംഗ്","price":9000,"veg":1}]}]}</script>
+<script src="/assets/demo-shim.js"></script>
+<script type="module" src="/assets/menu.js"></script>
+</body>
+</html>

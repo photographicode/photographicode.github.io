@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6b2f">
+<meta name="hotel" content="jja">
+<title>JJA · Sample menu</title><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/menu.css">
+</head>
+<body class="guest">
+<header class="hero" id="hero"></header>
+<div class="notice" id="notice" hidden></div>
+<div class="tools">
+  <label class="search"><span class="sr">Search dishes</span><input id="q" type="search" placeholder="Search dishes…" autocomplete="off"></label>
+  <label class="check vegonly"><input type="checkbox" id="vegOnly"> Veg only</label>
+</div>
+<nav class="chips" id="chips" aria-label="Menu sections"></nav>
+<main id="list" aria-live="polite"><p class="loading">Loading menu…</p></main>
+<footer class="foot muted small" id="foot"></footer>
+
+<div class="dock">
+  <button class="tabbtn" id="tabBtn" hidden></button>
+  <button class="cartbar" id="cartBar" hidden></button>
+</div>
+<dialog id="sheet" class="sheet"><div class="dlg" id="sheetBody"></div></dialog>
+<script>window.DEMO={"hotel":{"slug":"jja","name":"JJA","theme":{"preset":"spice","layout":"list"},"url":"../","menuUrl":"./","profile":{"tagline":"Homely Kerala food, made fresh every day","cuisine":"Kerala · Meals · Snacks","address":"Chottanikkara, Ernakulam (sample)","hours":"Mon–Sun · 7 am – 10 pm (sample)"},"settings":{"payment_mode":"postpay","tax_pct":5,"upi_id":"","payee":"JJA","razorpay":false,"rp_key_id":"","cash":true,"demo_pay":true,"accepting":true,"ordering":true}},"menu":[{"id":1,"name":"Breakfast","visible":1,"sort":0,"items":[{"id":1,"category_id":1,"photo":null,"available":1,"bestseller":1,"spicy":0,"sort":0,"name":"Appam with Vegetable Stew","description":"Soft lacy appam, coconut-milk stew · അപ്പം, സ്റ്റൂ","price":9000,"veg":1},{"id":2,"category_id":1,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Puttu & Kadala Curry","description":"Steamed rice puttu with black chickpea curry","price":7000,"veg":1},{"id":3,"category_id":1,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":2,"name":"Idiyappam & Egg Curry","description":"String hoppers, Kerala-style egg roast curry","price":9000,"veg":0},{"id":4,"category_id":1,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":3,"name":"Porotta (2 pcs)","description":"Flaky layered Kerala porotta","price":3000,"veg":1}]},{"id":2,"name":"Meals","visible":1,"sort":1,"items":[{"id":5,"category_id":2,"photo":null,"available":1,"bestseller":1,"spicy":0,"sort":0,"name":"Kerala Meals (Veg)","description":"Matta rice, sambar, avial, thoran, pickle, papadam","price":12000,"veg":1},{"id":6,"category_id":2,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Fish Curry Meals","description":"Meals with red fish curry · മീൻ കറി","price":17000,"veg":0},{"id":7,"category_id":2,"photo":null,"available":1,"bestseller":1,"spicy":0,"sort":2,"name":"Chicken Biryani","description":"Malabar-style, fried onions, raita and pickle","price":18000,"veg":0},{"id":8,"category_id":2,"photo":null,"available":1,"bestseller":0,"spicy":1,"sort":3,"name":"Kappa & Fish Curry","description":"Tapioca with spicy fish curry","price":13000,"veg":0}]},{"id":3,"name":"Fry & Roast","visible":1,"sort":2,"items":[{"id":9,"category_id":3,"photo":null,"available":1,"bestseller":1,"spicy":1,"sort":0,"name":"Beef Ularthiyathu","description":"Slow-roasted beef, coconut slivers, curry leaves","price":16000,"veg":0},{"id":10,"category_id":3,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Chicken Roast","description":"Kerala chicken roast with onions and pepper","price":15000,"veg":0},{"id":11,"category_id":3,"photo":null,"available":1,"bestseller":0,"spicy":1,"sort":2,"name":"Ayala Fry","description":"Mackerel in red masala, shallow fried","price":12000,"veg":0},{"id":12,"category_id":3,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":3,"name":"Egg Roast","description":"Two eggs in thick onion-tomato masala","price":7000,"veg":0}]},{"id":4,"name":"Evening Snacks","visible":1,"sort":3,"items":[{"id":13,"category_id":4,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":0,"name":"Pazham Pori","description":"Ripe banana fritter · പഴംപൊരി","price":1500,"veg":1},{"id":14,"category_id":4,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Uzhunnu Vada","description":"Crispy urad dal vada","price":1200,"veg":1},{"id":15,"category_id":4,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":2,"name":"Parippu Vada","description":"Spiced lentil fritter","price":1000,"veg":1},{"id":16,"category_id":4,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":3,"name":"Egg Puffs","description":"Flaky puff with masala egg","price":2000,"veg":0}]},{"id":5,"name":"Drinks","visible":1,"sort":4,"items":[{"id":17,"category_id":5,"photo":null,"available":1,"bestseller":1,"spicy":0,"sort":0,"name":"Chaya","description":"Kerala milk tea","price":1500,"veg":1},{"id":18,"category_id":5,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Kattan Kaapi","description":"Black coffee with jaggery","price":1500,"veg":1},{"id":19,"category_id":5,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":2,"name":"Fresh Lime Juice","description":"Sweet or salt","price":3000,"veg":1},{"id":20,"category_id":5,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":3,"name":"Sulaimani","description":"Spiced lemon black tea","price":2000,"veg":1}]},{"id":6,"name":"Desserts","visible":1,"sort":5,"items":[{"id":21,"category_id":6,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":0,"name":"Palada Payasam","description":"Rice ada in sweet milk · പായസം","price":5000,"veg":1},{"id":22,"category_id":6,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Caramel Pudding","description":"House-made, chilled","price":6000,"veg":1}]}]}</script>
+<script src="/assets/demo-shim.js"></script>
+<script type="module" src="/assets/menu.js"></script>
+</body>
+</html>

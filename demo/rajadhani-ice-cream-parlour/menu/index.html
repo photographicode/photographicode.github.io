@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6b2f">
+<meta name="hotel" content="rajadhani-ice-cream-parlour">
+<title>Rajadhani Ice Cream Parlour · Sample menu</title><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/menu.css">
+</head>
+<body class="guest">
+<header class="hero" id="hero"></header>
+<div class="notice" id="notice" hidden></div>
+<div class="tools">
+  <label class="search"><span class="sr">Search dishes</span><input id="q" type="search" placeholder="Search dishes…" autocomplete="off"></label>
+  <label class="check vegonly"><input type="checkbox" id="vegOnly"> Veg only</label>
+</div>
+<nav class="chips" id="chips" aria-label="Menu sections"></nav>
+<main id="list" aria-live="polite"><p class="loading">Loading menu…</p></main>
+<footer class="foot muted small" id="foot"></footer>
+
+<div class="dock">
+  <button class="tabbtn" id="tabBtn" hidden></button>
+  <button class="cartbar" id="cartBar" hidden></button>
+</div>
+<dialog id="sheet" class="sheet"><div class="dlg" id="sheetBody"></div></dialog>
+<script>window.DEMO={"hotel":{"slug":"rajadhani-ice-cream-parlour","name":"Rajadhani Ice Cream Parlour","theme":{"preset":"pastel","layout":"list"},"url":"../","menuUrl":"./","profile":{"tagline":"Scoops, sundaes and shakes","cuisine":"Ice cream · Desserts","address":"Thrippunithura, Ernakulam (sample)","hours":"Mon–Sun · 7 am – 10 pm (sample)"},"settings":{"payment_mode":"postpay","tax_pct":5,"upi_id":"","payee":"Rajadhani Ice Cream Parlour","razorpay":false,"rp_key_id":"","cash":true,"demo_pay":true,"accepting":true,"ordering":true}},"menu":[{"id":1,"name":"Scoops","visible":1,"sort":0,"items":[{"id":1,"category_id":1,"photo":null,"available":1,"bestseller":1,"spicy":0,"sort":0,"name":"Tender Coconut","description":"Fresh coconut, real pieces","price":7000,"veg":1},{"id":2,"category_id":1,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Belgian Chocolate","description":"Dark and rich","price":8000,"veg":1},{"id":3,"category_id":1,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":2,"name":"Kesar Pista","description":"Saffron, pistachio","price":7000,"veg":1}]},{"id":2,"name":"Sundaes","visible":1,"sort":1,"items":[{"id":4,"category_id":2,"photo":null,"available":1,"bestseller":1,"spicy":0,"sort":0,"name":"Death by Chocolate","description":"Brownie, three scoops, fudge","price":18000,"veg":1},{"id":5,"category_id":2,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Fruit Salad with Ice Cream","description":"Seasonal fruits, vanilla","price":10000,"veg":1}]},{"id":3,"name":"Shakes","visible":1,"sort":2,"items":[{"id":6,"category_id":3,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":0,"name":"Oreo Shake","description":"Cookies and cream","price":13000,"veg":1},{"id":7,"category_id":3,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Sharjah Shake","description":"Kochi classic","price":10000,"veg":1}]}]}</script>
+<script src="/assets/demo-shim.js"></script>
+<script type="module" src="/assets/menu.js"></script>
+</body>
+</html>

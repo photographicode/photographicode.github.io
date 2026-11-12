@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Discover Kochi · 1,400+ cafés and restaurants, including the ones nobody told you about</title>
 <meta name="description" content="Find small cafés, tea shops and family restaurants across Kochi: Fort Kochi, Kakkanad, Edappally, Thrippunithura, Chottanikkara and more. Free listing for every local place.">
+<meta property="og:title" content="Discover Kochi — 1,400+ cafés and restaurants">
+<meta property="og:description" content="Tea shops and tiny cafés Kochi hasn't found yet. Free listing for every local place.">
 <meta name="theme-color" content="#1f6f4a">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap">
@@ -34,19 +36,20 @@
   .tag { align-self: flex-start; font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 99px; background: #1f6f4a14; color: var(--brand); }
   .acts { display: flex; gap: 14px; margin-top: auto; padding-top: 8px; }
   .acts a { font-size: 14px; font-weight: 600; text-decoration: none; }
-  .claim { color: #a35f08; }
+  .acts .claim { display:inline-flex; align-items:center; min-height:32px; padding:4px 10px; border-radius:99px; background:#e08a1a1a; color:#a35f08; font-weight:700; }
   .more { display: block; margin: 0 auto 40px; }
   .owner { background: var(--ink); color: #e8efe9; border-radius: 20px; padding: 28px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; margin: 10px 0 24px; }
   .owner h2 { color: #fff; font-size: clamp(22px, 3vw, 30px); margin: 0 0 6px; }
   .owner p { color: #a9bdb0; margin: 0; }
-  @media (max-width: 700px) { .owner { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { .owner { grid-template-columns: 1fr; } .owner .btn { width: 100%; } }
   footer { color: var(--muted); font-size: 13px; padding: 24px 0 40px; border-top: 1px solid var(--line); }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <nav class="top"><div class="wrap">
   <a class="brandmark" href="/">Photographicode</a><span class="sp"></span>
-  <a class="btn sm primary" href="/#contact">Own a café? Get a free page</a>
+  <a class="btn sm primary" href="/#contact">Claim free page</a>
 </div></nav>
 
 <header class="wrap">
@@ -54,7 +57,7 @@
   <p>Tea shops, family hotels and tiny cafés that never made it onto a food blog. Search by area or dish and go try somewhere new this week.</p>
 </header>
 
-<main class="wrap">
+<main id="main" class="wrap">
   <section class="owner" aria-label="For owners">
     <div><h2 class="serif">Is your place on this list?</h2>
       <p>Claim it free. We'll add your menu, photos, timings and a WhatsApp button, shoot a 30-second video of your best dish, and help you show up on Google Maps.</p></div>
@@ -102,9 +105,11 @@ function card(p) {
   const meta = document.createElement('div'); meta.className = 'meta'; meta.textContent = [p.cuisine, p.area].filter(Boolean).join(' · ');
   const dir = document.createElement('a'); dir.href = `https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lon}`;
   dir.target = '_blank'; dir.rel = 'noopener'; dir.textContent = 'Directions →';
-  const claim = document.createElement('a'); claim.className = 'claim'; claim.href = `/?hotel=${encodeURIComponent(p.name)}#contact`; claim.textContent = 'Owner? Claim free';
+  const claim = document.createElement('a'); claim.className = 'claim btn sm'; claim.href = `/?hotel=${encodeURIComponent(p.name)}#contact`; claim.textContent = 'Owner? Claim free';
+  claim.style.background = '#e08a1a1a'; claim.style.color = '#a35f08'; claim.style.border = '0';
   const acts = document.createElement('div'); acts.className = 'acts'; acts.append(dir, claim);
-  el.append(tag, h, meta, acts);
+  const free = document.createElement('span'); free.className = 'tag'; free.style.background='#e08a1e1a'; free.style.color='#a35f08'; free.textContent='Free page';
+  el.append(tag, h, meta, free, acts);
   return el;
 }
 function render() {

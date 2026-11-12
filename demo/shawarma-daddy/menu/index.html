@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f6b2f">
+<meta name="hotel" content="shawarma-daddy">
+<title>Shawarma Daddy · Sample menu</title><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600&display=swap">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/menu.css">
+</head>
+<body class="guest">
+<header class="hero" id="hero"></header>
+<div class="notice" id="notice" hidden></div>
+<div class="tools">
+  <label class="search"><span class="sr">Search dishes</span><input id="q" type="search" placeholder="Search dishes…" autocomplete="off"></label>
+  <label class="check vegonly"><input type="checkbox" id="vegOnly"> Veg only</label>
+</div>
+<nav class="chips" id="chips" aria-label="Menu sections"></nav>
+<main id="list" aria-live="polite"><p class="loading">Loading menu…</p></main>
+<footer class="foot muted small" id="foot"></footer>
+
+<div class="dock">
+  <button class="tabbtn" id="tabBtn" hidden></button>
+  <button class="cartbar" id="cartBar" hidden></button>
+</div>
+<dialog id="sheet" class="sheet"><div class="dlg" id="sheetBody"></div></dialog>
+<script>window.DEMO={"hotel":{"slug":"shawarma-daddy","name":"Shawarma Daddy","theme":{"preset":"backwater","layout":"list"},"url":"../","menuUrl":"./","profile":{"tagline":"Shawarma, Al Faham and late-night cravings","cuisine":"Arabian · Chinese · Fast food","address":"Irumpanam / Seaport Rd, Ernakulam (sample)","hours":"Mon–Sun · 7 am – 10 pm (sample)"},"settings":{"payment_mode":"postpay","tax_pct":5,"upi_id":"","payee":"Shawarma Daddy","razorpay":false,"rp_key_id":"","cash":true,"demo_pay":true,"accepting":true,"ordering":true}},"menu":[{"id":1,"name":"Shawarma & Rolls","visible":1,"sort":0,"items":[{"id":1,"category_id":1,"photo":null,"available":1,"bestseller":1,"spicy":0,"sort":0,"name":"Chicken Shawarma Roll","description":"Kuboos, garlic toum, pickles","price":10000,"veg":0},{"id":2,"category_id":1,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Shawarma Plate","description":"Chicken, kuboos, fries, salad, toum","price":17000,"veg":0},{"id":3,"category_id":1,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":2,"name":"Paneer Roll","description":"Tikka paneer, onions, mint mayo","price":10000,"veg":1}]},{"id":2,"name":"Grill","visible":1,"sort":1,"items":[{"id":4,"category_id":2,"photo":null,"available":1,"bestseller":1,"spicy":0,"sort":0,"name":"Al Faham (Quarter)","description":"Charcoal-grilled, with kuboos and mayo","price":18000,"veg":0},{"id":5,"category_id":2,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Al Faham (Half)","description":"Serves two","price":34000,"veg":0},{"id":6,"category_id":2,"photo":null,"available":1,"bestseller":1,"spicy":0,"sort":2,"name":"Kuzhimandhi (Chicken)","description":"Smoky mandhi rice, quarter chicken","price":22000,"veg":0}]},{"id":3,"name":"Burgers & Fries","visible":1,"sort":2,"items":[{"id":7,"category_id":3,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":0,"name":"Crispy Chicken Burger","description":"Fried fillet, lettuce, house sauce","price":13000,"veg":0},{"id":8,"category_id":3,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Veg Burger","description":"Crunchy veg patty, cheese","price":9000,"veg":1},{"id":9,"category_id":3,"photo":null,"available":1,"bestseller":0,"spicy":1,"sort":2,"name":"Loaded Fries","description":"Cheese, jalapeño, peri peri","price":12000,"veg":1}]},{"id":4,"name":"Chinese","visible":1,"sort":3,"items":[{"id":10,"category_id":4,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":0,"name":"Chicken Fried Rice","description":"Wok-tossed, egg and spring onion","price":16000,"veg":0},{"id":11,"category_id":4,"photo":null,"available":1,"bestseller":1,"spicy":1,"sort":1,"name":"Chilli Chicken (Dry)","description":"Indo-Chinese, peppers and onion","price":18000,"veg":0},{"id":12,"category_id":4,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":2,"name":"Gobi Manchurian","description":"Crispy cauliflower, tangy sauce","price":14000,"veg":1}]},{"id":5,"name":"Juices & Shakes","visible":1,"sort":4,"items":[{"id":13,"category_id":5,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":0,"name":"Fresh Lime Soda","description":"Sweet or salt","price":5000,"veg":1},{"id":14,"category_id":5,"photo":null,"available":1,"bestseller":0,"spicy":0,"sort":1,"name":"Avil Milk","description":"Kochi favourite","price":8000,"veg":1},{"id":15,"category_id":5,"photo":null,"available":1,"bestseller":1,"spicy":0,"sort":2,"name":"Kulukki Sarbath","description":"Shaken lime, chia, chilli","price":5000,"veg":1}]}]}</script>
+<script src="/assets/demo-shim.js"></script>
+<script type="module" src="/assets/menu.js"></script>
+</body>
+</html>
